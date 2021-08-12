@@ -55,6 +55,19 @@
                 placeholder="Confirm Password" />
                 <ErrorMessage class="text-red-600" name="confirm_password"/>
             </div>
+            <!-- user's role -->
+            <div class="mb-3">
+              <label class="inline-block mb-2">I am...</label>
+              <vee-field as="select" name="role"
+                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
+                  duration-500 focus:outline-none focus:border-black rounded">
+                <option value="Artist">an artist</option>
+                <option value="Listener">a listener</option>
+                <option value="Publisher">a publisher</option>
+                <option value="Producer">a producer</option>
+              </vee-field>
+              <ErrorMessage class="text-red-600" name="role"/>
+            </div>
             <!-- Country -->
             <div class="mb-3">
               <label class="inline-block mb-2">Country</label>
@@ -85,6 +98,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'RegisterForm',
   data() {
@@ -96,6 +110,7 @@ export default {
         age: 'required|numeric|min_value:18|max_value:112',
         password: 'required|min:5|max:100',
         confirm_password: 'passwords_mismatch:@password',
+        role: 'required|role_excluded:Publisher',
         country: 'required|country_excluded:Vietnam',
         tos: 'tos',
       },
@@ -109,15 +124,24 @@ export default {
     };
   },
   methods: {
-    register(values) {
+    async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_alert_variant = 'bg-blue-500';
       this.reg_alert_msg = 'Please wait while your account is being created.';
 
+      try {
+        await this.$store.dispatch('register', values);
+      } catch (error) {
+        this.reg_in_submission = false;
+        this.reg_alert_variant = 'bg-red-500';
+        this.reg_alert_msg = 'An unexpected error occured. Try again later.';
+        return;
+      }
+
       this.reg_alert_variant = 'bg-green-500';
       this.reg_alert_msg = 'Your account has been successfully created.';
-      console.log(values);
+      window.location.reload();
     },
   },
 };

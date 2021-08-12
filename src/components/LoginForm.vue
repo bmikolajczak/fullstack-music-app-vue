@@ -1,6 +1,6 @@
 <template>
   <!-- Login Form -->
-        <div class="text-white text-center font-bold p-4 mb-4" 
+        <div class="text-white text-center font-bold p-4 mb-4"
             v-if="login_show_alert"
             :class="login_alert_variant">
             {{login_alert_msg}}
@@ -43,22 +43,31 @@ export default {
         email: 'required|email',
         password: 'required|min:5|max:32',
       },
-      login_show_alert = true,
-      login_in_submission = true,
-      login_alert_variant = 'bg-blue-500',
-      login_alert_msg = 'Logging in...',
+      login_show_alert: false,
+      login_in_submission: false,
+      login_alert_variant: 'bg-blue-500',
+      login_alert_msg: 'Logging in...',
     };
   },
   methods: {
-    login(values) {
+    async login(values) {
       console.log(values);
-      this.login_in_submission=true;
-      this.login_show_alert=true;
-      this.login_alert_variant='bg-blue-500';
-      this.login_alert_msg='Logging you in...';
+      this.login_in_submission = true;
+      this.login_show_alert = true;
+      this.login_alert_variant = 'bg-blue-500';
+      this.login_alert_msg = 'Logging you in...';
 
-      this.login_alert_variant='bg-green-500';
-      this.login_alert_msg='You are now loed in.'
+      try { // calling the action
+        await this.$store.dispatch('login', values);
+      } catch (error) {
+        this.login_in_submission = false;
+        this.login_alert_variant = 'bg-red-500';
+        this.login_alert_msg = 'Invalid login details';
+        return;
+      }
+      this.login_alert_variant = 'bg-green-500';
+      this.login_alert_msg = 'You are now logged in.';
+      window.location.reload();
     },
   },
 };
