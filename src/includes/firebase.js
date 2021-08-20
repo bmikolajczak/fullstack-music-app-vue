@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBKTWSDPKCS8G-6lXIXPBkFUitOkglkuYQ',
@@ -15,10 +16,16 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+// any tasks related to storage
+const storage = firebase.storage();
+
 // creating a collection in firebase for storing data
 const usersCollection = db.collection('users');
+const songsCollection = db.collection('songs');
 export {
   auth,
   db,
   usersCollection,
+  storage,
+  songsCollection,
 };
