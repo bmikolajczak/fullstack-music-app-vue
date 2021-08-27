@@ -89,7 +89,6 @@ export default createStore({
     },
 
     async newSong({ commit, state, dispatch }, payload) {
-      
       // dealing with multiple players of the song
       if (state.sound instanceof Howl) {
         // pauses the audio, removes the instance and rm form memory

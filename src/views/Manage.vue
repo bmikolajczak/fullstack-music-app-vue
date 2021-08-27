@@ -79,9 +79,10 @@ export default {
     if (!this.updateUnsavedFlag) {
       next();
     } else {
-      // eslint-disable-next-line no-alert, no-restriicted-globals
+      /* eslint-disable */
       const leave = confirm('You have unsaved changes. Are you sure you want to leave?');
       next(leave);
+      /* eslint-enable */
     }
   },
 

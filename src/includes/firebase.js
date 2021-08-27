@@ -22,10 +22,12 @@ const storage = firebase.storage();
 // creating a collection in firebase for storing data
 const usersCollection = db.collection('users');
 const songsCollection = db.collection('songs');
+const commentsCollection = db.collection('comments');
 export {
   auth,
   db,
   usersCollection,
   storage,
   songsCollection,
+  commentsCollection,
 };
