@@ -1,0 +1,23 @@
+{
+  "header": {
+    "about": "About",
+    "logout": "Logout",
+    "manage": "Manage",
+    "reg": "Login / Register"
+  },
+  "home": {
+    "listen": "Listen to Great Music!"
+  },
+  "manage": {
+    "drop": "Drop your files here",
+    "my_songs": "My Songs",
+    "upload": "Upload"
+  },
+  "register": {
+    "TOS": "Terms of Service",
+    "accept": "I accept Music's {0}"
+  },
+  "song": {
+    "comment_count": "No Comments|1 Comment|{count} Comments"
+  }
+}

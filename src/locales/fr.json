@@ -1,0 +1,25 @@
+{
+  "header": {
+    "about": "À propos",
+    "logout": "Se déconnecter",
+    "manage": "Gérer",
+    "reg": "S'identifier / S'enregistrer"
+  },
+  "home": {
+    "listen": "Écoutez de la bonne musique !"
+  },
+  "manage": {
+    "drop": "Déposez vos fichiers ici",
+    "my_songs": "Mes chansons",
+    "upload": "Télécharger"
+  },
+  "register": {
+    "TOS": "",
+    "accept": ""
+  },
+  "song": {
+    "comment": {
+      "count": ""
+    }
+  }
+}
