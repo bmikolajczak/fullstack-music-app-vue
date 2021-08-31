@@ -106,24 +106,30 @@ export default {
     };
   },
 
-  async created() {
-    const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
+  async beforeRouteEnter(to, from, next) {
+    const docSnapshot = await songsCollection.doc(to.params.id).get();
+    next((vm) => {
+      if (!docSnapshot.exists) {
+        vm.$router.push({ name: 'home' });
+        return;
+      }
+      // checking for query params
+      const { sort } = vm.$route.query;
 
-    if (!docSnapshot.exists) {
-      this.$router.push({ name: 'home' });
-      return;
-    }
-    // checking for query params
-    const { sort } = this.$route.query;
+      // eslint-disable-next-line no-param-reassign
+      vm.sort = sort === '1' || sort === '2' ? sort : '1';
 
-    this.sort = sort === '1' || sort === '2' ? sort : '1';
-
-    // inserting song data into data func var
-    this.song = docSnapshot.data();
-    this.getComments();
+      // inserting song data into data func var
+      // eslint-disable-next-line no-param-reassign
+      vm.song = docSnapshot.data();
+      vm.getComments();
+    });
+    // const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
   },
   computed: {
-    ...mapState(['userLoggedIn']),
+    ...mapState({
+      userLoggedIn: (state) => state.auth.userLoggedIn,
+    }),
     ...mapGetters(['playing']),
     sortedComments() {
       return this.comments.slice().sort((a, b) => {
