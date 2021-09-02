@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async login(values) {
-      console.log(values);
+      // console.log(values);
       this.login_in_submission = true;
       this.login_show_alert = true;
       this.login_alert_variant = 'bg-blue-500';

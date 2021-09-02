@@ -20,9 +20,10 @@ const db = firebase.firestore();
 const storage = firebase.storage();
 
 // keep the copy of the db in the user;s browser
-db.enablePersistence().catch((error) => {
-  console.log(`Firebase persistence error ${error.code}`);
-});
+db.enablePersistence();
+// .catch((error) => {
+// console.log(`Firebase persistence error ${error.code}`);
+// });
 
 // creating a collection in firebase for storing data
 const usersCollection = db.collection('users');

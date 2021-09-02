@@ -29,7 +29,6 @@ const routes = [
     meta: { requiresAuth: true },
     // alias: '/manage',  creates new url and doesn't redirect
     beforeEnter: (to, from, next) => {
-      console.log('Manage Roue Guard');
       next();
     },
   },

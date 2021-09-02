@@ -9,6 +9,7 @@
       <!-- Play/Pause Button -->
       <button type="button" class="z-50 h-24 w-24 text-3xl bg-white text-black rounded-full
         focus:outline-none"
+        id="play-button"
         @click.prevent="newSong(song)">
         <i class="fas"
         :class="{'fa-play': !playing, 'fa-pause': playing}"></i>
@@ -157,7 +158,7 @@ export default {
         name: auth.currentUser.displayName,
         uid: auth.currentUser.uid,
       };
-      console.log(comment);
+      // console.log(comment);
       // adding comment to the db
       await commentsCollection.add(comment);
 

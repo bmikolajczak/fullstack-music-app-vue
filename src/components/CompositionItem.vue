@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     async edit(values) {
-      console.log('song edited');
+      // console.log('song edited');
       this.in_submission = true;
       this.show_alert = true;
       this.alert_variant = 'bg-blue-500';
